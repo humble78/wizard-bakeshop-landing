@@ -94,7 +94,7 @@ export function CartDrawer() {
                     animate={{ x: [-40, 0, 160], y: [40, 0, -180], rotate: [-10, 0, 12], opacity: [0, 1, 0] }}
                     transition={{ duration: 3.2, times: [0, 0.35, 1], ease: "easeInOut" }}
                   >
-                    <Owl className="w-28" flap={0.22} />
+                    <Owl className="w-36" flap={0.22} />
                   </motion.div>
                   <h3 className="font-heading text-2xl font-bold">Your owl has taken flight!</h3>
                   <p className="max-w-xs font-fell text-lg italic text-parchment-800">

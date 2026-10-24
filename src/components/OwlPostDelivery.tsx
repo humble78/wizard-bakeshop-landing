@@ -44,9 +44,9 @@ const STATS = [
 ];
 
 const FLIGHTS = [
-  { className: "top-[14%] w-20 sm:w-28", duration: 17, delay: 0, reverse: false, flap: 0.42 },
-  { className: "top-[6%] w-10 opacity-60 blur-[1px] sm:w-14", duration: 26, delay: 7, reverse: false, flap: 0.3 },
-  { className: "top-[58%] w-14 opacity-80 sm:w-16", duration: 21, delay: 12, reverse: true, flap: 0.36 },
+  { className: "top-[14%] w-28 sm:w-40", duration: 17, delay: 0, reverse: false, flap: 0.42 },
+  { className: "top-[6%] w-14 opacity-60 blur-[1px] sm:w-20", duration: 26, delay: 7, reverse: false, flap: 0.3 },
+  { className: "top-[58%] w-20 opacity-80 sm:w-24", duration: 21, delay: 12, reverse: true, flap: 0.36 },
 ];
 
 const DRIFTING = [
@@ -92,10 +92,13 @@ export function OwlPostDelivery() {
           animate={{
             x: flight.reverse ? ["110vw", "-20vw"] : ["-20vw", "110vw"],
             y: [0, -40, 10, -30, 0],
+            // Bank gently into each rise and dip of the glide.
+            rotate: [0, -6, 4, -4, 0],
           }}
           transition={{
             x: { duration: flight.duration, delay: flight.delay, repeat: Infinity, repeatDelay: 3, ease: "linear" },
             y: { duration: flight.duration / 2, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: flight.duration / 2, repeat: Infinity, ease: "easeInOut" },
           }}
         >
           <Owl className="w-full" flap={flight.flap} letter={!flight.reverse} />

@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — Hogwarts at night meets a candlelit bakery         */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Obsidian night */
+  --color-ink-950: #060509;
+  --color-ink-900: #0b0910;
+  --color-ink-800: #13101a;
+  --color-ink-700: #1d1924;
+  --color-ink-600: #2a2433;
+
+  /* Aged parchment */
+  --color-parchment-50: #fbf5e6;
+  --color-parchment-100: #f3e6c4;
+  --color-parchment-200: #e8d4a2;
+  --color-parchment-300: #d9bd7f;
+  --color-parchment-400: #c4a063;
+  --color-parchment-600: #8a6a3a;
+  --color-parchment-700: #6b4f2a;
+  --color-parchment-800: #4d3719;
+  --color-parchment-900: #2f210e;
+
+  /* Spell-light gold */
+  --color-gold-100: #fff6d6;
+  --color-gold-200: #fbecc0;
+  --color-gold-300: #f5d98b;
+  --color-gold-400: #e8c15a;
+  --color-gold-500: #d4a537;
+  --color-gold-600: #a97c1f;
+  --color-gold-700: #7a5713;
+
+  /* Gryffindor crimson */
+  --color-crimson-300: #e07a6e;
+  --color-crimson-400: #c43a3a;
+  --color-crimson-500: #a11d21;
+  --color-crimson-600: #7f0909;
+  --color-crimson-900: #2c0405;
+
+  /* Slytherin emerald */
+  --color-serpent-300: #7cc79a;
+  --color-serpent-400: #3f8f5f;
+  --color-serpent-500: #2a623d;
+  --color-serpent-700: #1a472a;
+  --color-serpent-900: #0a1f12;
+
+  --animate-flicker: flicker 2.2s ease-in-out infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-shimmer: shimmer 8s linear infinite;
+  --animate-orbit: orbit 28s linear infinite;
+
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes flicker {
+    0%,
+    100% {
+      transform: scale(1, 1) skewX(0deg);
+      opacity: 1;
+    }
+    20% {
+      transform: scale(0.94, 1.08) skewX(2deg);
+    }
+    45% {
+      transform: scale(1.04, 0.95) skewX(-3deg);
+      opacity: 0.9;
+    }
+    70% {
+      transform: scale(0.97, 1.05) skewX(1deg);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.15;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: -200% center;
+    }
+  }
+}
+
+/* Fonts come from next/font CSS variables set on <html>. */
+@theme inline {
+  --font-display: var(--font-cinzel-decorative), ui-serif, Georgia, serif;
+  --font-heading: var(--font-cinzel), ui-serif, Georgia, serif;
+  --font-fell: var(--font-im-fell), ui-serif, Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Custom utilities                                                   */
+/* ------------------------------------------------------------------ */
+
+/* Molten gold lettering. Pair with `animate-shimmer` to make it glint. */
+@utility text-gilded {
+  background-image: linear-gradient(
+    100deg,
+    #a97c1f 0%,
+    #f5d98b 18%,
+    #fff6d6 28%,
+    #e8c15a 40%,
+    #a97c1f 55%,
+    #f5d98b 75%,
+    #fff6d6 85%,
+    #a97c1f 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-parchment {
+  background-color: #ead8ae;
+  background-image:
+    radial-gradient(ellipse at 18% 12%, rgb(255 249 228 / 0.75), transparent 55%),
+    radial-gradient(ellipse at 82% 88%, rgb(150 104 45 / 0.32), transparent 58%),
+    radial-gradient(ellipse at 90% 10%, rgb(150 104 45 / 0.18), transparent 40%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgb(96 60 20 / 0.38) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.29 0 0 0 0 0.12 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+/* Subtle film grain for dark surfaces. */
+@utility bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Gothic arch window mask for imagery. */
+@utility arch {
+  border-radius: 999px 999px 1.25rem 1.25rem;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    color-scheme: dark;
+    scrollbar-color: var(--color-gold-600) var(--color-ink-950);
+    scrollbar-width: thin;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-parchment-100);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  /* Film grain across the whole experience. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: var(--color-crimson-500);
+    color: var(--color-gold-200);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--color-gold-500), var(--color-gold-700));
+    border-radius: 999px;
+  }
+}
